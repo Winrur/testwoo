@@ -1,7 +1,7 @@
 // Global objects
 function JumpStart(options, appBehaviors)
 {
-	this.version = "0.2.2";
+	this.version = "0.2.3";
 	this.shouldSimulateLag = false;
 	this.tickLag = 0.0;	// for simulating bad performance.
 
