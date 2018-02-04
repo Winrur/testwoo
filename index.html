@@ -44,8 +44,14 @@
 
 			jumpStart.addEventListener("ready", function()
 			{
+
 				console.log("App is ready!");	
 				var mysteryBox = jumpStart.spawnInstance("models/box");
+				mysteryBox.traverse ( function (child) {
+    			if (child instanceof THREE.Mesh) {
+        		child.visible = false;
+   					 }
+				});
 				mysteryBox.scale.set(12, 12, 12);
 				var boundary = jumpStart.enclosureBoundary("floor");
 				return true;
