@@ -43,6 +43,7 @@
 			{
 				console.log("App is ready!");	
 				var mysteryBox = jumpStart.spawnInstance("models/box");
+				mysteryBox.scale.set(5, 5, 5);
 				var boundary = jumpStart.enclosureBoundary("floor");
 				return true;
 			});
