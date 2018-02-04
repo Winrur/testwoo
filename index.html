@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Mystery Box AltVR</title>
+		<script src="engine/misc/JumpStart.js"></script>
+		<script>
+			// Warns user if the app is opened on a browser
+
+			if (!window.altspace) {
+				document.write("Please open this in AltspaceVR!");
+			}	
+
+			// Sets myOptions variable for loadJumpStart
+
+			loadJumpStart({
+				"multiuserOnly": false	,
+				"debug": {"showCursorPlanes": false	}
+			});
+
+			// Load in all the models / sounds.
+
+			jumpStart.addEventListener("precache", function()
+			{
+				jumpStart.loadModels(["assets/example/models/box"]).then(function()
+				{
+					jumpStart.doneCaching();
+				});
+				// true	: SYNCHRONOUS
+				// false: ASYNCHRONOUS (must call jumpStart.doneCaching)
+				return false;
+			});
+
+			jumpStart.addEventListener("initialize", function()
+			{
+				//jumpStart.scene.position.x += 1024;//(Math.PI / 2.0);
+				//jumpStart.world.rotateY(Math.PI / 2.0);
+				//debugSlate.innerHTML += "<br />Initialize called.";
+				// true	: SYNCHRONOUS
+				JumpStart.doneInitializing;
+				return false;
+			});
+
+			jumpStart.addEventListener("ready", function()
+			{
+				console.log("App is ready!");	
+				var mysteryBox = jumpStart.spawnInstance("models/box");
+				var boundary = jumpStart.enclosureBoundary("floor");
+				mysteryBox.applyBehavior("physics");
+				mysteryBox.sync();
+				return true;
+			});
+
+			// Load the app for the first time, spawn in the mystery box ("models/box"
+
+		</script>
+	</head>
+
+	<body>
+	</body>
+</html>
