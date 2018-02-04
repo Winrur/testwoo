@@ -22,7 +22,8 @@
 			jumpStart.addEventListener("precache", function()
 			{
 				jumpStart.loadModels(["assets/example/models/box"]).then(function()
-				{
+				{	
+					console.log("Caching...");
 					jumpStart.doneCaching();
 				});
 				// true	: SYNCHRONOUS
@@ -36,8 +37,7 @@
 				//jumpStart.world.rotateY(Math.PI / 2.0);
 				//debugSlate.innerHTML += "<br />Initialize called.";
 				// true	: SYNCHRONOUS
-				JumpStart.doneInitializing;
-				return false;
+				return true;
 			});
 
 			jumpStart.addEventListener("ready", function()
