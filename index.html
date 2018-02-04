@@ -2,8 +2,8 @@
 	<html lang="en">
 		<head>
 			<title>Mystery Box AltVR</title>
-			<script src="engine/misc/JumpStart.js"></script>
-			<script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
+			<script src="engine/misc/JumpStart.js"></script>	
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
 			<script>
 
 				// Sets the variables
@@ -58,10 +58,6 @@
 					mysteryBox.scale.set(12, 12, 12);
 					var targetPos = { y: newGun.position.y + 5 };
 					var firstPos = { y : newGun.position.y };
-					var tween = new TWEEN.Tween(firstPos).to(targetPos, 3000);
-					tween.onUpdate(function(){
-    				newGun.position.y = firstPos.y;
-					});
 					return true;
 				});
 
