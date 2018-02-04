@@ -6,7 +6,10 @@
 		<script>
 
 			// Set the myGuns varibable to an array that has the guns that are in the mystery box
-			var myGuns = ["assets/example/models/gun0","assets/example/models/gun1","assets/example/models/gun2","assets/example/models/gun3","assets/example/models/gun4","assets/example/models/gun5","assets/example/models/gun6"]
+			var myGuns = ["assets/example/models/gun0", "assets/example/models/gun1", "assets/example/models/gun2", "assets/example/models/gun3", "assets/example/models/gun4", "assets/example/models/gun5", "assets/example/models/gun6"];
+
+			// Random number generation for later
+			var randomNumber = Math.floor(Math.random() * 7);
 
 			// Warns user if the app is opened on a browser
 
@@ -44,28 +47,8 @@
 
 			jumpStart.addEventListener("ready", function()
 			{
-
-				console.log("App is ready!");
-				function hideMesh (child) {
-    			if (child instanceof THREE.Mesh) {
-        		child.visible = false;
-   					 }
-				}
 				var mysteryBox = jumpStart.spawnInstance("models/box");
-				var gun0 = jumpStart.spawnInstance("assets/example/models/gun0");
-				var gun1 = jumpStart.spawnInstance("assets/example/models/gun1");
-				var gun2 = jumpStart.spawnInstance("assets/example/models/gun2");
-				var gun3 = jumpStart.spawnInstance("assets/example/models/gun3");
-				var gun4 = jumpStart.spawnInstance("assets/example/models/gun4");
-				var gun5 = jumpStart.spawnInstance("assets/example/models/gun5");
-				var gun6 = jumpStart.spawnInstance("assets/example/models/gun6");
-				gun0.traverse (hideMesh());
-				gun1.traverse (hideMesh());
-				gun2.traverse (hideMesh());
-				gun3.traverse (hideMesh());
-				gun4.traverse (hideMesh());
-				gun5.traverse (hideMesh());
-				gun6.traverse (hideMesh());
+				var newGun = jumpstart.spawnInstance(myGuns(randomNumber));
 				mysteryBox.scale.set(12, 12, 12);
 				var boundary = jumpStart.enclosureBoundary("floor");
 				return true;
