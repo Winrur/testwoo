@@ -56,8 +56,10 @@
 					newGun = jumpStart.spawnInstance(myGuns[randomNumber]);
 					console.log(randomNumber);
 					mysteryBox.scale.set(12, 12, 12);
+					newGun.scale.set(12, 12, 12);
 					var targetPos = { y: newGun.position.y + 5 };
 					var firstPos = { y : newGun.position.y };
+					var tween = new TWEEN.Tween(firstPos).to(targetPos, 5000);
 					return true;
 				});
 
