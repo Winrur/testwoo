@@ -4,21 +4,20 @@
 		<title>Mystery Box AltVR</title>
 		<script src="engine/misc/JumpStart.js"></script>
 		<script>
-
 			// Warns user if the app is opened on a browser
 
 			if (!window.altspace) {
 				document.write("Please open this in AltspaceVR!");
 			}	
 
-			// Loads JumpStart with the options
+			// Load JumpStart, set the options.
 
 			loadJumpStart({
-				"multiuserOnly": false,
+				"multiuserOnly": false	,
 				"debug": {"showCursorPlanes": false	}
 			});
 
-			// Caches all the models / sounds
+			// Cache all the models / sounds
 
 			jumpStart.addEventListener("precache", function()
 			{
@@ -26,27 +25,27 @@
 				{	
 					console.log("Caching...");
 					jumpStart.doneCaching();
-					console.log("Caching complete!");
 				});
+				// true	: SYNCHRONOUS
+				// false: ASYNCHRONOUS (must call jumpStart.doneCaching)
 				return false;
 			});
 
-			// The app is loading...
-
 			jumpStart.addEventListener("initialize", function()
 			{
+				//jumpStart.scene.position.x += 1024;//(Math.PI / 2.0);
+				//jumpStart.world.rotateY(Math.PI / 2.0);
+				//debugSlate.innerHTML += "<br />Initialize called.";
+				// true	: SYNCHRONOUS
 				return true;
-				console.log("Init complete!");
 			});
 
 			jumpStart.addEventListener("ready", function()
 			{
 				console.log("App is ready!");	
 				var mysteryBox = jumpStart.spawnInstance("models/box");
-				mysteryBox.scale.set(5, 5, 5);
 				var boundary = jumpStart.enclosureBoundary("floor");
-				jumpStart.run();
-				return false;
+				return true;
 			});
 
 			// Load the app for the first time, spawn in the mystery box ("models/box"
