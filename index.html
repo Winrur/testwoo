@@ -109,6 +109,7 @@
 					jumpStart.makeCollide(rockp2);
 					jumpStart.makeCollide(platform);
 					platform.addEventListener("cursorenter", function() {
+						console.log("cursor entered on " + this);
 						this.scale.set(30, 30, 30);		
 					});
 					return true;
