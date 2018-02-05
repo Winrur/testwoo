@@ -4,17 +4,27 @@
 			<title>Mystery Box AltVR</title>
 			<script src="engine/misc/JumpStart.js"></script>	
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+			<script src="https://cdn.rawgit.com/NGenesis/altspacevr-behaviors/v0.9.2/js/altspaceutil.min.js"></script>
 			<script>
 
-				// Sets the variables
+				// 
 
-				var myGuns = ["assets/example/models/gun0", "assets/example/models/gun1", "assets/example/models/gun2", "assets/example/models/gun3", "assets/example/models/gun4", "assets/example/models/gun5", "assets/example/models/gun6"];
-				var mysteryBox;
-				var newGun;
+				// Sets the outcome arrays
 
-				// Random number generation
+				var outcomesRock = ["Rock pounds out fire", "Rock crushes scissors", "Rock crushes sponge"];
+				var outcomesPaper = ["Paper fans air", "Paper covers rock", "Paper floats on water"];
+				var outcomesScissors = ["Scissors swish through air", "Scissors cut paper", "Scissors cut sponge"];
+				var outcomesAir = ["Air blows out fire", "Air erodes rock", "Air evaporates water"];
+				var outcomesSponge = ["Sponge soaks paper", "Sponge uses air pockets", "Sponge absorbs water"];
+				var outcomesFire = ["Fire melts scissors", "Fire burns paper", "Fire burns sponge"];
+				var outcomesWater = ["Water erodes rock", "Water puts out fire", "Water rusts scissors"];
 
-				var randomNumber = Math.floor(Math.random() * 7);
+				// Sets the model arrays that will be loaded in
+
+				var modelsP1 = ["assets/1firep1", "assets/2airp1", "assets/3spongep1", "assets/4waterp1", "assets/5scissorsp1", "assets/6paperp1", "assets/7rockp1"];
+				var modelsP2 = ["assets/1firep2", "assets/2airp2", "assets/3spongep2", "assets/4waterp2", "assets/5scissorsp2", "assets/6paperp2", "assets/7rockp2"];
+				var modelsPlatform = ["assets/platform"];
+				var modelsAll = modelsP1.concat(modelsP2, modelsPlatform);
 
 				// Warns user if the app is opened on a browser
 
@@ -33,7 +43,7 @@
 
 				jumpStart.addEventListener("precache", function()
 				{
-					jumpStart.loadModels(["assets/example/models/box","assets/example/models/gun0","assets/example/models/gun1","assets/example/models/gun2","assets/example/models/gun3","assets/example/models/gun4","assets/example/models/gun5","assets/example/models/gun6"]).then(function()
+					jumpStart.loadModels(modelsAll).then(function()
 					{	
 						console.log("Caching...");
 						jumpStart.doneCaching();
@@ -51,17 +61,10 @@
 				// App is ready!
 
 				jumpStart.addEventListener("ready", function()
-				{
-					mysteryBox = jumpStart.spawnInstance("models/box");
-					newGun = jumpStart.spawnInstance(myGuns[randomNumber]);
-					console.log(randomNumber);
-					mysteryBox.scale.set(12, 12, 12);
-					newGun.scale.set(12, 12, 12);
-					var targetPos = { y: newGun.position.y + 5 };
-					var firstPos = { y : newGun.position.y };
-					var tween = new TWEEN.Tween(firstPos).to(targetPos, 5000);
-   					newGun.position.y = firstPos.y;
-   					console.log("animation complete!");
+				{	
+					console.log(modelsAll);
+					platform = jumpStart.spawnInstance(modelsAll[14]);
+					platform.scale.set(20, 20, 20);
 					return true;
 				});
 
