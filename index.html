@@ -7,7 +7,11 @@
 			<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
 			<script>
 
-				// 
+				// Sets the variables
+
+				var user1 = ""
+				var user2 = ""
+				var canPlay = false
 
 				// Sets the outcome arrays
 
@@ -123,6 +127,21 @@
 					jumpStart.makeCollide(paperp2);
 					jumpStart.makeCollide(rockp2);
 					jumpStart.makeCollide(platform);
+					firep1.sync();
+					airp1.sync();
+					spongep1.sync();
+					waterp1.sync();
+					scissorsp1.sync();
+					paperp1.sync();
+					rockp1.sync();
+					firep2.sync();
+					airp2.sync();
+					spongep2.sync();
+					waterp2.sync();
+					scissorsp2.sync();
+					paperp2.sync();
+					rockp2.sync();
+					platform.sync();
 					firep1.addEventListener("cursorenter", function() {
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#66ff99");
@@ -262,6 +281,91 @@
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#ffffff");
 						this.setColor(myColor);				
+					});
+
+					firep1.addEventListener("cursordown", function() {
+						console.log("Cursor entered on " + this);
+						var myColor = new THREE.Color("#ff9900");
+						this.setColor(myColor);	
+						canPlay = false;
+					});
+					firep2.addEventListener("cursordown", function() {
+						console.log("Cursor entered on " + this);
+						var myColor = new THREE.Color("#ff9900");
+						this.setColor(myColor);	
+						canPlay = false;
+					});
+					airp1.addEventListener("cursordown", function() {
+						console.log("Cursor entered on " + this);
+						var myColor = new THREE.Color("#ff9900");
+						this.setColor(myColor);	
+						canPlay = false;
+					});
+					airp2.addEventListener("cursordown", function() {
+						console.log("Cursor entered on " + this);
+						var myColor = new THREE.Color("#ff9900");
+						this.setColor(myColor);	
+						canPlay = false;
+					});
+					spongep1.addEventListener("cursordown", function() {
+						console.log("Cursor entered on " + this);
+						var myColor = new THREE.Color("#ff9900");
+						this.setColor(myColor);	
+						canPlay = false;
+					});
+					spongep2.addEventListener("cursordown", function() {
+						console.log("Cursor entered on " + this);
+						var myColor = new THREE.Color("#ff9900");
+						this.setColor(myColor);	
+						canPlay = false;		
+					});
+					waterp1.addEventListener("cursordown", function() {
+						console.log("Cursor entered on " + this);
+						var myColor = new THREE.Color("#ff9900");
+						this.setColor(myColor);	
+						canPlay = false;		
+					});
+					waterp2.addEventListener("cursordown", function() {
+						console.log("Cursor entered on " + this);
+						var myColor = new THREE.Color("#ff9900");
+						this.setColor(myColor);	
+						canPlay = false;				
+					});
+					scissorsp1.addEventListener("cursordown", function() {
+						console.log("Cursor entered on " + this);
+						var myColor = new THREE.Color("#ff9900");
+						this.setColor(myColor);	
+						canPlay = false;	
+					});
+					scissorsp2.addEventListener("cursordown", function() {
+						console.log("Cursor entered on " + this);
+						var myColor = new THREE.Color("#ff9900");
+						this.setColor(myColor);	
+						canPlay = false;	
+					});
+					paperp1.addEventListener("cursordown", function() {
+						console.log("Cursor entered on " + this);
+						var myColor = new THREE.Color("#ff9900");
+						this.setColor(myColor);	
+						canPlay = false;		
+					});
+					paperp2.addEventListener("cursordown", function() {
+						console.log("Cursor entered on " + this);
+						var myColor = new THREE.Color("#ff9900");
+						this.setColor(myColor);	
+						canPlay = false;	
+					});
+					rockp1.addEventListener("cursordown", function() {
+						console.log("Cursor entered on " + this);
+						var myColor = new THREE.Color("#ff9900");
+						this.setColor(myColor);	
+						canPlay = false;			
+					});
+					rockp2.addEventListener("cursordown", function() {
+						console.log("Cursor entered on " + this);
+						var myColor = new THREE.Color("#ff9900");
+						this.setColor(myColor);	
+						canPlay = false;			
 					});
 
 					return true;
