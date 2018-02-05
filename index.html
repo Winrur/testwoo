@@ -109,7 +109,7 @@
 					jumpStart.makeCollide(rockp2);
 					jumpStart.makeCollide(platform);
 					platform.addEventListener("cursorenter", function() {
-						platform.scale.set(30, 30, 30);		
+						this.scale.set(30, 30, 30);		
 					});
 					return true;
 				});
