@@ -94,7 +94,8 @@
 					paperp2.scale.set(20, 20, 20);
 					rockp1.scale.set(20, 20, 20);
 					rockp2.scale.set(20, 20, 20);
-					var meshCollider = new NativeComponent("n-mesh-collider", platform).addTo(scene);
+					jumpStart.makeCollide(platform);
+
 					return true;
 				});
 
