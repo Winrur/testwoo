@@ -11,7 +11,7 @@
 
 				var user1 = ""
 				var user2 = ""
-				var canPlay = false
+				var isClicked = false
 
 				// Sets the outcome arrays
 
@@ -142,6 +142,8 @@
 					paperp2.sync();
 					rockp2.sync();
 					platform.sync();
+					if (isClicked = false) {
+
 					firep1.addEventListener("cursorenter", function() {
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#66ff99");
@@ -282,90 +284,90 @@
 						var myColor = new THREE.Color("#ffffff");
 						this.setColor(myColor);				
 					});
-
+}
 					firep1.addEventListener("cursorup", function() {
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#ff9900");
 						this.setColor(myColor);	
-						canPlay = false;
+						isClicked = true;
 					});
 					firep2.addEventListener("cursorup", function() {
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#ff9900");
 						this.setColor(myColor);	
-						canPlay = false;
+						isClicked = true;
 					});
 					airp1.addEventListener("cursorup", function() {
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#ff9900");
 						this.setColor(myColor);	
-						canPlay = false;
+						isClicked = true;
 					});
 					airp2.addEventListener("cursorup", function() {
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#ff9900");
 						this.setColor(myColor);	
-						canPlay = false;
+						isClicked = true;
 					});
 					spongep1.addEventListener("cursorup", function() {
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#ff9900");
 						this.setColor(myColor);	
-						canPlay = false;
+						isClicked = true;
 					});
 					spongep2.addEventListener("cursorup", function() {
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#ff9900");
 						this.setColor(myColor);	
-						canPlay = false;		
+						isClicked = true;		
 					});
 					waterp1.addEventListener("cursorup", function() {
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#ff9900");
 						this.setColor(myColor);	
-						canPlay = false;		
+						isClicked = true;		
 					});
 					waterp2.addEventListener("cursorup", function() {
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#ff9900");
 						this.setColor(myColor);	
-						canPlay = false;				
+						isClicked = true;				
 					});
 					scissorsp1.addEventListener("cursorup", function() {
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#ff9900");
 						this.setColor(myColor);	
-						canPlay = false;	
+						isClicked = true;	
 					});
 					scissorsp2.addEventListener("cursorup", function() {
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#ff9900");
 						this.setColor(myColor);	
-						canPlay = false;	
+						isClicked = true;	
 					});
 					paperp1.addEventListener("cursorup", function() {
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#ff9900");
 						this.setColor(myColor);	
-						canPlay = false;		
+						isClicked = true;		
 					});
 					paperp2.addEventListener("cursorup", function() {
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#ff9900");
 						this.setColor(myColor);	
-						canPlay = false;	
+						isClicked = true;	
 					});
 					rockp1.addEventListener("cursorup", function() {
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#ff9900");
 						this.setColor(myColor);	
-						canPlay = false;			
+						isClicked = true;			
 					});
 					rockp2.addEventListener("cursorup", function() {
 						console.log("Cursor entered on " + this);
 						var myColor = new THREE.Color("#ff9900");
 						this.setColor(myColor);	
-						canPlay = false;			
+						isClicked = true;			
 					});
 
 					return true;
