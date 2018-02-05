@@ -1,384 +1,168 @@
 		<!DOCTYPE html>
+
 		<html lang="en">
+
 			<head>
+
 				<title>Mystery Box AltVR</title>
+
 				<script src="engine/misc/JumpStart.js"></script>	
+
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+
 				<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+
 				<script>
 
 					// Sets the variables
 
-					var user1 = ""
-					var user2 = ""
-					var isClicked = false
+					var platform;
+
+					var firep1;
+
+					var airp1;
+
+					var spongep1;
+
+					var waterp1;
+
+					var scissorsp1;
+
+					var paperp1;
+
+					var rockp1;
+
+					var firep2;
+
+					var airp2;
+
+					var spongep2;
+
+					var waterp2;
+
+					var scissorsp2;
+
+					var paperp2;
+
+					var rockp2;
 
 					// Sets the outcome arrays
 
 					var outcomesRock = ["Rock pounds out fire", "Rock crushes scissors", "Rock crushes sponge"];
+
 					var outcomesPaper = ["Paper fans air", "Paper covers rock", "Paper floats on water"];
+
 					var outcomesScissors = ["Scissors swish through air", "Scissors cut paper", "Scissors cut sponge"];
+
 					var outcomesAir = ["Air blows out fire", "Air erodes rock", "Air evaporates water"];
+
 					var outcomesSponge = ["Sponge soaks paper", "Sponge uses air pockets", "Sponge absorbs water"];
+
 					var outcomesFire = ["Fire melts scissors", "Fire burns paper", "Fire burns sponge"];
+
 					var outcomesWater = ["Water erodes rock", "Water puts out fire", "Water rusts scissors"];
 
 					// Sets the model arrays that will be loaded in
 
 					var modelsP1 = ["assets/1firep1", "assets/2airp1", "assets/3spongep1", "assets/4waterp1", "assets/5scissorsp1", "assets/6paperp1", "assets/7rockp1"];
+
 					var modelsP2 = ["assets/1firep2", "assets/2airp2", "assets/3spongep2", "assets/4waterp2", "assets/5scissorsp2", "assets/6paperp2", "assets/7rockp2"];
+
 					var modelsPlatform = ["assets/platform"];
+
 					var modelsAll = modelsP1.concat(modelsP2, modelsPlatform);
+
+					// Sets an array of the variables which the models will be asigned to
+
+					var varArr = [platform, firep1, airp1, spongep1, waterp1, scissorsp1, paperp1, rockp1, firep2, airp2, spongep2, waterp2, scissorsp2, paperp2, rockp2,];
 
 					// Warns user if the app is opened on a browser
 
 					if (!window.altspace) {
+
 						document.write("Please open this in AltspaceVR!");
+
 					}	
 
 					// Load JumpStart, set the options.
 
 					loadJumpStart({
-						"multiuserOnly": false	,
+
+						"multiuserOnly": false,
+
 						"debug": {"showCursorPlanes": false	}
+
 					});
 
 					// Cache all the models / sounds
+ 
+					jumpStart.addEventListener("precache", function() {
+					
+						jumpStart.loadModels(modelsAll).then(function() {	
 
-					jumpStart.addEventListener("precache", function()
-					{
-						jumpStart.loadModels(modelsAll).then(function()
-						{	
 							console.log("Caching...");
+
 							jumpStart.doneCaching();
+
 						});
+
 						return false;
+
 					});
+
 
 					// Load the app
 
-					jumpStart.addEventListener("initialize", function()
-					{
+					jumpStart.addEventListener("initialize", function() {
+
 						return true;
+
 					});
 
 					// App is ready!
 
-					jumpStart.addEventListener("ready", function()
-					{	
-						console.log(modelsAll);
-						platform = jumpStart.spawnInstance(modelsPlatform[0]);
-						firep1 = jumpStart.spawnInstance(modelsP1[0])
-						airp1 = jumpStart.spawnInstance(modelsP1[1])
-						spongep1 = jumpStart.spawnInstance(modelsP1[2])
-						waterp1 = jumpStart.spawnInstance(modelsP1[3])
-						scissorsp1 = jumpStart.spawnInstance(modelsP1[4])
-						paperp1 = jumpStart.spawnInstance(modelsP1[5])
-						rockp1 = jumpStart.spawnInstance(modelsP1[6])
-						firep2 = jumpStart.spawnInstance(modelsP2[0])
-						airp2 = jumpStart.spawnInstance(modelsP2[1])
-						spongep2 = jumpStart.spawnInstance(modelsP2[2])
-						waterp2 = jumpStart.spawnInstance(modelsP2[3])
-						scissorsp2 = jumpStart.spawnInstance(modelsP2[4])
-						paperp2 = jumpStart.spawnInstance(modelsP2[5])
-						rockp2 = jumpStart.spawnInstance(modelsP2[6])
-						platform.scale.set(20, 20, 20);
-						platform.blocksLOS = true;
-						firep1.scale.set(20, 20, 20);
-						firep1.blocksLOS = true;
-						firep2.scale.set(20, 20, 20);
-						firep2.blocksLOS = true;
-						airp1.scale.set(20, 20, 20);
-						airp1.blocksLOS = true;
-						airp2.scale.set(20, 20, 20);
-						airp2.blocksLOS = true;
-						spongep1.scale.set(20, 20, 20);
-						spongep1.blocksLOS = true;
-						spongep2.scale.set(20, 20, 20);
-						spongep2.blocksLOS = true;
-						waterp1.scale.set(20, 20, 20);
-						waterp1.blocksLOS = true;
-						waterp2.scale.set(20, 20, 20);
-						waterp2.blocksLOS = true;
-						scissorsp1.scale.set(20, 20, 20);
-						scissorsp1.blocksLOS = true;
-						scissorsp2.scale.set(20, 20, 20);
-						scissorsp2.blocksLOS = true;
-						paperp1.scale.set(20, 20, 20);
-						paperp1.blocksLOS = true;
-						paperp2.scale.set(20, 20, 20);
-						paperp2.blocksLOS = true;
-						rockp1.scale.set(20, 20, 20);
-						rockp1.blocksLOS = true;
-						rockp2.scale.set(20, 20, 20);
-						rockp2.blocksLOS = true;
-						jumpStart.makeCollide(firep1);
-						jumpStart.makeCollide(airp1);
-						jumpStart.makeCollide(spongep1);
-						jumpStart.makeCollide(waterp1);
-						jumpStart.makeCollide(scissorsp1);
-						jumpStart.makeCollide(paperp1);
-						jumpStart.makeCollide(rockp1);
-						jumpStart.makeCollide(firep2);
-						jumpStart.makeCollide(airp2);
-						jumpStart.makeCollide(spongep2);
-						jumpStart.makeCollide(waterp2);
-						jumpStart.makeCollide(scissorsp2);
-						jumpStart.makeCollide(paperp2);
-						jumpStart.makeCollide(rockp2);
-						jumpStart.makeCollide(platform);
-						firep1.sync();
-						airp1.sync();
-						spongep1.sync();
-						waterp1.sync();
-						scissorsp1.sync();
-						paperp1.sync();
-						rockp1.sync();
-						firep2.sync();
-						airp2.sync();
-						spongep2.sync();
-						waterp2.sync();
-						scissorsp2.sync();
-						paperp2.sync();
-						rockp2.sync();
-						platform.sync();
-						if (isClicked = false) {
+					jumpStart.addEventListener("ready", function() {
+						
+						varArr.forEach(function (element) {
 
-						firep1.addEventListener("cursorenter", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#66ff99");
-							this.setColor(myColor);	
-						});
-						firep2.addEventListener("cursorenter", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#66ff99");
-							this.setColor(myColor);	
-						});
-						airp1.addEventListener("cursorenter", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#66ff99");
-							this.setColor(myColor);	
-						});
-						airp2.addEventListener("cursorenter", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#66ff99");
-							this.setColor(myColor);	
-						});
-						spongep1.addEventListener("cursorenter", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#66ff99");
-							this.setColor(myColor);	
-						});
-						spongep2.addEventListener("cursorenter", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#66ff99");
-							this.setColor(myColor);		
-						});
-						waterp1.addEventListener("cursorenter", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#66ff99");
-							this.setColor(myColor);	
-						});
-						waterp2.addEventListener("cursorenter", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#66ff99");
-							this.setColor(myColor);	
-						});
-						scissorsp1.addEventListener("cursorenter", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#66ff99");
-							this.setColor(myColor);	
-						});
-						scissorsp2.addEventListener("cursorenter", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#66ff99");
-							this.setColor(myColor);		
-						});
-						paperp1.addEventListener("cursorenter", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#66ff99");
-							this.setColor(myColor);		
-						});
-						paperp2.addEventListener("cursorenter", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#66ff99");
-							this.setColor(myColor);	
-						});
-						rockp1.addEventListener("cursorenter", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#66ff99");
-							this.setColor(myColor);	
-						});
-						rockp2.addEventListener("cursorenter", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#66ff99");
-							this.setColor(myColor);			
-						});
-						firep1.addEventListener("cursorexit", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ffffff");
-							this.setColor(myColor);	
-						});
-						firep2.addEventListener("cursorexit", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ffffff");
-							this.setColor(myColor);	
-						});
-						airp1.addEventListener("cursorexit", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ffffff");
-							this.setColor(myColor);	
-						});
-						airp2.addEventListener("cursorexit", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ffffff");
-							this.setColor(myColor);		
-						});
-						spongep1.addEventListener("cursorexit", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ffffff");
-							this.setColor(myColor);		
-						});
-						spongep2.addEventListener("cursorexit", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ffffff");
-							this.setColor(myColor);			
-						});
-						waterp1.addEventListener("cursorexit", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ffffff");
-							this.setColor(myColor);			
-						});
-						waterp2.addEventListener("cursorexit", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ffffff");
-							this.setColor(myColor);				
-						});
-						scissorsp1.addEventListener("cursorexit", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ffffff");
-							this.setColor(myColor);	
-						});
-						scissorsp2.addEventListener("cursorexit", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ffffff");
-							this.setColor(myColor);		
-						});
-						paperp1.addEventListener("cursorexit", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ffffff");
-							this.setColor(myColor);				
-						});
-						paperp2.addEventListener("cursorexit", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ffffff");
-							this.setColor(myColor);			
-						});
-						rockp1.addEventListener("cursorexit", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ffffff");
-							this.setColor(myColor);				
-						});
-						rockp2.addEventListener("cursorexit", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ffffff");
-							this.setColor(myColor);				
-						});
-	}					
-					if (isClicked = false) {
+							var i = 0;
 
-						firep1.addEventListener("cursorup", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ff9900");
-							this.setColor(myColor);	
-							isClicked = true;
+							console.log( element );
+
+							element = jumpstart.spawnInstance(models[i]);
+
+							element.scale.set( 20 , 20 , 20 );
+
+							element.blockLOS = true;
+
+							jumpStart.makeCollide( element );
+
+							element.sync();
+
+							element.addEventListener("cursorenter", function() {
+
+							console.log("Cursor entered on " + element);
+
+							var myColor = new THREE.Color("#66ff99");
+
+							element..setColor(myColor);	
+
+							});
+
+							i++;
+							
 						});
-						firep2.addEventListener("cursorup", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ff9900");
-							this.setColor(myColor);	
-							isClicked = true;
-						});
-						airp1.addEventListener("cursorup", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ff9900");
-							this.setColor(myColor);	
-							isClicked = true;
-						});
-						airp2.addEventListener("cursorup", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ff9900");
-							this.setColor(myColor);	
-							isClicked = true;
-						});
-						spongep1.addEventListener("cursorup", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ff9900");
-							this.setColor(myColor);	
-							isClicked = true;
-						});
-						spongep2.addEventListener("cursorup", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ff9900");
-							this.setColor(myColor);	
-							isClicked = true;		
-						});
-						waterp1.addEventListener("cursorup", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ff9900");
-							this.setColor(myColor);	
-							isClicked = true;		
-						});
-						waterp2.addEventListener("cursorup", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ff9900");
-							this.setColor(myColor);	
-							isClicked = true;				
-						});
-						scissorsp1.addEventListener("cursorup", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ff9900");
-							this.setColor(myColor);	
-							isClicked = true;	
-						});
-						scissorsp2.addEventListener("cursorup", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ff9900");
-							this.setColor(myColor);	
-							isClicked = true;	
-						});
-						paperp1.addEventListener("cursorup", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ff9900");
-							this.setColor(myColor);	
-							isClicked = true;		
-						});
-						paperp2.addEventListener("cursorup", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ff9900");
-							this.setColor(myColor);	
-							isClicked = true;	
-						});
-						rockp1.addEventListener("cursorup", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ff9900");
-							this.setColor(myColor);	
-							isClicked = true;			
-						});
-						rockp2.addEventListener("cursorup", function() {
-							console.log("Cursor entered on " + this);
-							var myColor = new THREE.Color("#ff9900");
-							this.setColor(myColor);	
-							isClicked = true;			
-						});
-						}
 
 						return true;
+
 					});
 
 				</script>
+
 			</head>
 
 			<body>
+
 			</body>
+			
 		</html>
