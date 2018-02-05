@@ -93,7 +93,24 @@
 					paperp2.scale.set(20, 20, 20);
 					rockp1.scale.set(20, 20, 20);
 					rockp2.scale.set(20, 20, 20);
+					jumpStart.makeCollide(firep1);
+					jumpStart.makeCollide(airp1);
+					jumpStart.makeCollide(spongep1);
+					jumpStart.makeCollide(waterp1);
+					jumpStart.makeCollide(scissorsp1);
+					jumpStart.makeCollide(paperp1);
+					jumpStart.makeCollide(rockp1);
+					jumpStart.makeCollide(firep2);
+					jumpStart.makeCollide(airp2);
+					jumpStart.makeCollide(spongep2);
+					jumpStart.makeCollide(waterp2);
+					jumpStart.makeCollide(scissorsp2);
+					jumpStart.makeCollide(paperp2);
+					jumpStart.makeCollide(rockp2);
 					jumpStart.makeCollide(platform);
+					platform.addEventListener("cursorenter", function() {
+						platform.addBehavior(new altspace.utilities.behaviors.HoverScale({ scale: 1.2, duration: 150 }));
+				});
 
 					return true;
 				});
