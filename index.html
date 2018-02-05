@@ -123,35 +123,33 @@
 
 					jumpStart.addEventListener("ready", function() {
 						
-						varArr.forEach(function (element) {
+						for (var i = 0; i <= varArr.length; i++) {
 
-							var i = 0;
+								console.log(varArr[i]);
 
-							console.log( element );
+								varArr[i] = jumpStart.spawnInstance(modelsAll[i]);
 
-							element = jumpStart.spawnInstance(modelsAll[i]);
+								varArr[i].scale.set(20, 20, 20);
 
-							element.scale.set( 20 , 20 , 20 );
+								varArr[i].blockLOS = true;
 
-							element.blockLOS = true;
+								jumpStart.makeCollide(varArr[i]);
 
-							jumpStart.makeCollide( element );
+								varArr[i].sync();
 
-							element.sync();
+								varArr[i].addEventListener("cursorenter", function () {
 
-							element.addEventListener("cursorenter", function() {
+									console.log("Cursor entered on " + varArr[i]);
 
-							console.log("Cursor entered on " + element);
+									var myColor = new THREE.Color("#66ff99");
 
-							var myColor = new THREE.Color("#66ff99");
+									varArr[i].setColor(myColor);	
 
-							element.setColor(myColor);	
+									});
 
-							});
+								}
 
-							i++;
-							
-						});
+							} 
 
 						return true;
 
