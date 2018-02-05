@@ -4,6 +4,7 @@
 			<title>Mystery Box AltVR</title>
 			<script src="engine/misc/JumpStart.js"></script>	
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+			<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
 			<script>
 
 				// 
@@ -93,6 +94,7 @@
 					paperp2.scale.set(20, 20, 20);
 					rockp1.scale.set(20, 20, 20);
 					rockp2.scale.set(20, 20, 20);
+					var meshCollider = new NativeComponent("n-mesh-collider", platform).addTo(scene);
 					return true;
 				});
 
